@@ -1,3 +1,4 @@
+#!/bin/bash
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 echo -e "\n$( date +'%Y-%m-%d %H:%M:%S.%N' ) Starting\n"
