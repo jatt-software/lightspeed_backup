@@ -2,11 +2,19 @@
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 echo -e "\n$( date +'%Y-%m-%d %H:%M:%S.%N' ) Starting\n"
 
+# only run on the first friday of the month
+if [ $(date +"%m") -eq $(date -d 7days +"%m") ]; then
+  echo -e "not first friday of the month, exiting\n"
+  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
+  exit 1;
+fi
+
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Loading configuration\n"
 if [ -f .env ]; then
   source .env;
 else
   echo -e ".env does not exist, please copy the .envTemplate and add your details\n"
+  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
   exit 1;
 fi
 
@@ -17,15 +25,15 @@ echo -e "Paths:"
 echo -e " * $SOURCE_FOLDER"
 echo -e " * $BACKUP_FOLDER\n"
 
-exit 1;
-
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Verifying mount points exist\n"
-if [ ! -d $SOURCE_FOLDER ]; then
+if [ ! -d $SOURCE_MOUNT_POINT ]; then
   echo -e "Source mount point does not exist, please run the setup, exiting\n"
+  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
   exit 1;
 fi
-if [ ! -d $BACKUP_FOLDER ]; then
+if [ ! -d $BACKUP_MOUNT_POINT ]; then
   echo -e "Backup mount point does not exist, please run the setup, exiting\n"
+  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
   exit 1;
 fi
 
@@ -38,19 +46,21 @@ mount.cifs //$BACKUP_SERVER_IP/$BACKUP_SHARE_NAME -o username=$BACKUP_USERNAME,p
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Verifying mounts\n"
 if [ ! -d $SOURCE_FOLDER ]; then
   echo -e "Source share not mounted, exiting\n"
+  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
   exit 1;
 fi
 if [ ! -d $BACKUP_FOLDER ]; then
   echo -e "Backup share not mounted, exiting\n"
+  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
   exit 1;
 fi
 
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Syncing backup files\n"
 rsync -ua --progress $SOURCE_FOLDER*.lsb $BACKUP_FOLDER
 
-echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Unmounting shares\n"
-umount /mnt/lightspeed/
-umount /mnt/tech/
+echo -e "\n\n$( date +'%Y-%m-%d %H:%M:%S.%N' ) Unmounting shares\n"
+umount $SOURCE_MOUNT_POINT
+umount $BACKUP_MOUNT_POINT
 
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
 exit 0
