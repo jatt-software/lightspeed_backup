@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# source samba configuration
+SOURCE_SERVER_IP="10.10.10.1"
+SOURCE_SHARE_NAME="folder_share"
+SOURCE_USERNAME="username"
+SOURCE_PASSWORD="password"
+SOURCE_DOMAIN="domain.lan"
+SOURCE_PATH="backup/weekly/"
+SOURCE_MOUNT_POINT="/mnt/backup_source/"
+
+# backup samba configuration
+BACKUP_SERVER_IP="10.10.10.2"
+BACKUP_SHARE_NAME="backup_share"
+BACKUP_USERNAME="username"
+BACKUP_PASSWORD="password"
+BACKUP_DOMAIN="domain.lan"
+BACKUP_PATH="backups/"
+BACKUP_MOUNT_POINT="/mnt/backup_destination/"
