@@ -9,6 +9,8 @@ if [ $(date +"%m") -eq $(date -d 7days +"%m") ]; then
   exit 1;
 fi
 
+cd "$(dirname "$0")"
+
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Loading configuration\n"
 if [ -f .env ]; then
   source .env;
@@ -58,7 +60,7 @@ fi
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Syncing backup files\n"
 rsync -ua --progress $SOURCE_FOLDER*.lsb $BACKUP_FOLDER
 
-echo -e "\n\n$( date +'%Y-%m-%d %H:%M:%S.%N' ) Unmounting shares\n"
+echo -e "\n$( date +'%Y-%m-%d %H:%M:%S.%N' ) Unmounting shares\n"
 umount $SOURCE_MOUNT_POINT
 umount $BACKUP_MOUNT_POINT
 
