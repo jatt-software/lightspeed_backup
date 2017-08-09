@@ -4,11 +4,11 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 echo -e "\n$( date +'%Y-%m-%d %H:%M:%S.%N' ) Starting\n"
 
 # only run on the first friday of the month
-if [ $(date +"%m") -eq $(date -d 7days +"%m") ]; then
-  echo -e "not first friday of the month, exiting\n"
-  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
-  exit 1;
-fi
+#if [ $(date +"%m") -eq $(date -d 7days +"%m") ]; then
+#  echo -e "not first friday of the month, exiting\n"
+#  echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
+#  exit 1;
+#fi
 
 cd "$(dirname "$0")"
 
