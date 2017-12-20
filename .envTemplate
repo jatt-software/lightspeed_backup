@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# send logs to server
+UPLOAD_LOGS="logging.dpndbl.com"
+SITE="fqdn.com"
+
 # source samba configuration
 SOURCE_SERVER_IP="10.10.10.1"
 SOURCE_SHARE_NAME="folder_share"
