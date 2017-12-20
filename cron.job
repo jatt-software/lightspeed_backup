@@ -1,1 +1,2 @@
-5 21 * * 5 /root/lightspeedbackup/smb.sh > /run/lightspeedbackup.log
+5 21 * * 5 /root/lightspeedbackup/smb.sh > /run/lightspeedbackup.log 2>&1
+5 23 * * 5 /root/lightspeedbackup/upload.sh > /dev/null 2>&1
