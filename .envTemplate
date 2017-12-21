@@ -4,6 +4,7 @@
 UPLOAD_LOGS="logging.dpndbl.com"
 SITE="fqdn.com"
 LOGPATH="/run/lightspeedbackup.log"
+BACKUP_FILE_TYPE="*.lsb"
 
 # source samba configuration
 SOURCE_SERVER_IP="10.10.10.1"

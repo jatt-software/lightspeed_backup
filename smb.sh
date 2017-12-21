@@ -59,7 +59,7 @@ if [ ! -d $BACKUP_FOLDER ]; then
 fi
 
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Syncing backup files\n"
-rsync -ua --progress $SOURCE_FOLDER*.lsb $BACKUP_FOLDER
+rsync -ua --progress $SOURCE_FOLDER$BACKUP_FILE_TYPE $BACKUP_FOLDER
 
 echo -e "\n$( date +'%Y-%m-%d %H:%M:%S.%N' ) Unmounting shares\n"
 umount $SOURCE_MOUNT_POINT
