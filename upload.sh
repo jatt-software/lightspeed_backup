@@ -15,7 +15,7 @@ else
 fi
 
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) uploading $LOGPATH"
-curl --progress-bar --output /dev/null -F 'logFile=@'$LOGPATH $UPLOAD_LOGS"?site="$SITE
+curl --progress-bar --output /dev/null -F 'logFile=@'$LOGPATH $UPLOAD_LOGS --data-urlencode "site=$SITE" --data-urlencode "email=$EMAIL"
 echo -e "\n"
 
 echo -e "$( date +'%Y-%m-%d %H:%M:%S.%N' ) Done\n"
