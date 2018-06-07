@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # send logs to server
-UPLOAD_LOGS="logging.dpndbl.com"
+UPLOAD_LOGS="log-server.fqdn.com"
 SITE="fqdn.com"
+EMAIL="helpdesk@dqdn.com"
 LOGPATH="/run/lightspeedbackup.log"
 BACKUP_FILE_TYPE="*.lsb"
 
